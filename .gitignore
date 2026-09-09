@@ -11,3 +11,6 @@ venv/
 node_modules/
 dist/
 *.tsbuildinfo
+
+data/models/
+sample_papers/*.pdf

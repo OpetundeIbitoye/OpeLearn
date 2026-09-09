@@ -1,4 +1,5 @@
 """Settings. The freeze-list values live here and are logged on every turn."""
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -25,6 +26,9 @@ class Settings(BaseSettings):
 
     study_phase: str = "development"
     randomization_seed: int = 0
+    model_directory: str = "/srv/data/models"
+    corpus_directory: str = "/srv/sample_papers"
+
     arms_config: str = "config/arms.yaml"
 
 
