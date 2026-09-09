@@ -1,0 +1,11 @@
+{# Prompt template for arm A1.
+   The rendered output of this file IS the independent variable.
+   Change nothing here after collection begins. #}
+
+{# TODO: system framing appropriate to this arm's answer.mode #}
+
+{% for chunk in chunks %}
+[{{ loop.index }}] {{ chunk.text }}
+{% endfor %}
+
+Question: {{ query }}

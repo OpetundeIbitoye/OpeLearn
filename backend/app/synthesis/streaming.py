@@ -1,0 +1,4 @@
+"""SSE framing.
+
+TODO: implement.
+"""

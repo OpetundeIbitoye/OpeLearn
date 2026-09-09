@@ -1,0 +1,15 @@
+"""Application logging. NOT the study event log — that lives in study/events.py."""
+import structlog
+
+
+def configure_logging() -> None:
+    structlog.configure(
+        processors=[
+            structlog.processors.add_log_level,
+            structlog.processors.TimeStamper(fmt="iso"),
+            structlog.processors.JSONRenderer(),
+        ]
+    )
+
+
+log = structlog.get_logger()
