@@ -1,0 +1,4 @@
+"""ScaffoldPrompt, TriggerContext.
+
+TODO: implement.
+"""

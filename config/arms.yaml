@@ -1,0 +1,81 @@
+# =============================================================================
+# THE MANIPULATION. Single source of truth for all three support conditions.
+#
+# This file is hashed at startup and the hash is recorded on every turn.
+# Once collection begins it does not change. If it must, that is a documented
+# protocol deviation.
+# =============================================================================
+
+version: "1.0.0"
+
+arms:
+  A1:
+    label: "Low support"
+    answer:
+      mode: passages_only        # no synthesised answer
+      socratic_prompt: true
+      max_tokens: 150
+    sources:
+      citations: none            # bare list at the end
+      show_passages: false
+      annotate_quality: false
+    scaffolds:
+      query_refinement: false
+      source_comparison: false
+      end_reflection: false
+    retrieval:
+      rewrite_query: false
+      decompose: false
+      passes: 1
+      top_k: 10
+      rerank: false
+
+  A2:
+    label: "Moderate support"
+    answer:
+      mode: reasoned             # answer with reasoning made explicit
+      socratic_prompt: false
+      max_tokens: 700
+    sources:
+      citations: inline          # numbered, linked to passage
+      show_passages: false
+      annotate_quality: false
+    scaffolds:
+      query_refinement: true     # fires below confidence threshold
+      source_comparison: false
+      end_reflection: false
+    retrieval:
+      rewrite_query: true
+      decompose: false
+      passes: 1
+      top_k: 20
+      rerank: true
+
+  A3:
+    label: "High support"
+    answer:
+      mode: direct               # bottom line first, confident register
+      socratic_prompt: false
+      max_tokens: 900
+    sources:
+      citations: inline
+      show_passages: true
+      annotate_quality: true     # relevance + recency annotation
+    scaffolds:
+      query_refinement: true
+      source_comparison: true    # fires when sources conflict
+      end_reflection: true
+    retrieval:
+      rewrite_query: true
+      decompose: true
+      passes: 3
+      top_k: 30
+      rerank: true
+
+# Baseline phase: everyone sees this before assignment. Clustering features
+# are extracted from behaviour here only. See design doc, Flag 01.
+baseline_arm: A2
+
+thresholds:
+  low_confidence_rerank_score: 0.35
+  conflict_detection_min_sources: 2

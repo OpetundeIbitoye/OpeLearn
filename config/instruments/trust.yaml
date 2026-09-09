@@ -1,0 +1,6 @@
+# Trust instrument.
+# Reuse validated item wording; cite the source scale here.
+source: "TODO: citation"
+trigger: post_task          # post_task | post_session | baseline
+scale: {min: 1, max: 7, anchors: ["TODO", "TODO"]}
+items: []

@@ -1,0 +1,29 @@
+[project]
+name = "sae-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic>=2",
+  "pydantic-settings",
+  "sqlalchemy[asyncio]>=2",
+  "asyncpg",
+  "alembic",
+  "pgvector",
+  "arq",
+  "redis",
+  "httpx",
+  "structlog",
+  "jinja2",
+  "pyyaml",
+  "sentence-transformers",
+  "docling",
+  "polars",
+]
+
+[dependency-groups]
+dev = ["pytest", "pytest-asyncio", "ruff", "scikit-learn"]
+
+[tool.ruff]
+line-length = 100
