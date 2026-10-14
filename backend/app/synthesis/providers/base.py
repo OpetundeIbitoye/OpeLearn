@@ -19,6 +19,12 @@ class Message(BaseModel):
     content: str
 
 
+class GenerationEvent(BaseModel):
+    text: str = ""
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+
+
 class GenerationProvider(ABC):
     name: str
 
@@ -30,4 +36,4 @@ class GenerationProvider(ABC):
     @abstractmethod
     async def stream(
         self, messages: list[Message], max_tokens: int, temperature: float = 0.0
-    ) -> AsyncIterator[str]: ...
+    ) -> AsyncIterator[GenerationEvent]: ...

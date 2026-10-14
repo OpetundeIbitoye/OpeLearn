@@ -1,6 +1,16 @@
-# Perceived Support instrument.
-# Reuse validated item wording; cite the source scale here.
-source: "TODO: citation"
-trigger: post_task          # post_task | post_session | baseline
-scale: {min: 1, max: 7, anchors: ["TODO", "TODO"]}
-items: []
+source: "Learning Climate Questionnaire, based on Williams, G. C., & Deci, E. L. (1996), adapted to the system referent. https://selfdeterminationtheory.org/learning-climate-questionnaire/"
+trigger: post_session
+scale:
+  min: 1
+  max: 7
+  anchors: ["strongly disagree", "strongly agree"]
+items:
+  - id: perceived_guidance
+    wording: "The system provided me with a high level of guidance."
+    role: manipulation_check
+  - id: choices
+    wording: "I feel that the system provided me choices and options."
+  - id: confidence
+    wording: "The system conveyed confidence in my ability to do well."
+  - id: perspective
+    wording: "The system tried to understand how I saw things before suggesting a new way to do things."

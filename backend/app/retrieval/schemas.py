@@ -4,6 +4,8 @@ from uuid import UUID
 
 from pydantic import BaseModel, Field
 
+from app.retrieval.sources.base import ExternalHit
+
 
 class SearchRequest(BaseModel):
     query: str = Field(min_length=1, max_length=10000)
@@ -20,3 +22,10 @@ class Candidate(BaseModel):
     dense_rank: int | None = None
     sparse_rank: int | None = None
     fused_score: float = 0.0
+    rerank_score: float | None = None
+
+
+class SearchResponse(BaseModel):
+    query_variants: list[str]
+    corpus: list[Candidate]
+    external: list[ExternalHit]

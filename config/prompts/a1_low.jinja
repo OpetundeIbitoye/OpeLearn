@@ -2,10 +2,14 @@
    The rendered output of this file IS the independent variable.
    Change nothing here after collection begins. #}
 
-{# TODO: system framing appropriate to this arm's answer.mode #}
+Return the ranked passages below verbatim. Do not synthesize an answer, draw a
+conclusion, or resolve disagreements. After the passages, ask exactly one
+Socratic question that helps the reader decide which evidence matters.
 
 {% for chunk in chunks %}
 [{{ loop.index }}] {{ chunk.text }}
 {% endfor %}
 
 Question: {{ query }}
+
+Return the passages followed by one Socratic question.

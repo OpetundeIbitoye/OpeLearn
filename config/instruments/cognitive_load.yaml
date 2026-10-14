@@ -1,6 +1,9 @@
-# Cognitive Load instrument.
-# Reuse validated item wording; cite the source scale here.
-source: "TODO: citation"
-trigger: post_task          # post_task | post_session | baseline
-scale: {min: 1, max: 7, anchors: ["TODO", "TODO"]}
-items: []
+source: "Paas, F. (1992). Training strategies for attaining transfer of problem-solving skill in statistics: A cognitive-load approach. Journal of Educational Psychology, 84(4), 429–434. https://doi.org/10.1037/0022-0663.84.4.429"
+trigger: post_task
+scale:
+  min: 1
+  max: 9
+  anchors: ["very, very low mental effort", "very, very high mental effort"]
+items:
+  - id: mental_effort
+    wording: "How much mental effort did you invest in this task?"

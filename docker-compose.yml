@@ -31,7 +31,7 @@ services:
       HF_HUB_DISABLE_TELEMETRY: "1"
       DO_NOT_TRACK: "1"
     ports: ["8000:8000"]
-    volumes: [./backend:/srv, ./config:/srv/config:ro, ./scripts:/srv/scripts:ro, ./data:/srv/data, ./sample_papers:/srv/sample_papers:ro]
+    volumes: [./backend:/srv, ./config:/srv/config:ro, ./scripts:/srv/scripts:ro, ./data:/srv/data, ./sample_papers:/srv/sample_papers:ro, ./analysis:/srv/analysis]
     depends_on:
       db: {condition: service_healthy}
       redis: {condition: service_started}

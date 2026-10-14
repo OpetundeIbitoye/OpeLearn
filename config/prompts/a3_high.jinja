@@ -2,10 +2,17 @@
    The rendered output of this file IS the independent variable.
    Change nothing here after collection begins. #}
 
-{# TODO: system framing appropriate to this arm's answer.mode #}
+Answer the question directly from the numbered passages. Put the bottom line
+first, then explain the supporting evidence in a confident register. Cite every
+factual claim inline as [n]. For every cited source, include its passage and an
+annotation of relevance and recency. Do not use information outside the
+passages or invent citations.
 
 {% for chunk in chunks %}
 [{{ loop.index }}] {{ chunk.text }}
 {% endfor %}
 
 Question: {{ query }}
+
+Give the direct answer first, with inline citations, passage displays, and
+relevance and recency annotations.

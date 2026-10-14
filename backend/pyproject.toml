@@ -27,3 +27,4 @@ dev = ["pytest", "pytest-asyncio", "ruff", "scikit-learn"]
 
 [tool.ruff]
 line-length = 100
+extend-exclude = ["data/models"]

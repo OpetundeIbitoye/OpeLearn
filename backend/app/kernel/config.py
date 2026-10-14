@@ -23,9 +23,11 @@ class Settings(BaseSettings):
     openalex_mailto: str = ""
     semantic_scholar_key: str = ""
     core_api_key: str = ""
+    external_provider_timeout_seconds: float = 5.0
 
     study_phase: str = "development"
     randomization_seed: int = 0
+    baseline_tasks_required: int = 3
     model_directory: str = "/srv/data/models"
     corpus_directory: str = "/srv/sample_papers"
 

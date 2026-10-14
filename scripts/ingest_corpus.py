@@ -1,10 +1,14 @@
 """Enqueue every PDF; wait for explicit success/failure counts."""
+
 import argparse
 import asyncio
 from pathlib import Path
+
+from app.kernel.config import settings
 from arq import create_pool
 from arq.connections import RedisSettings
-from app.kernel.config import settings
+from arq.jobs import ResultNotFound, SerializationError
+
 
 async def ingest(folder: Path) -> None:
     if not folder.is_dir():
@@ -26,7 +30,14 @@ async def ingest(folder: Path) -> None:
                 result = await job.result(timeout=7200)
                 print(result, flush=True)
                 succeeded += 1
-            except Exception as error:
+            except (
+                OSError,
+                RuntimeError,
+                ValueError,
+                TimeoutError,
+                ResultNotFound,
+                SerializationError,
+            ) as error:
                 print(f"FAILED {filename}: {error}", flush=True)
                 failed += 1
     finally:
@@ -34,6 +45,7 @@ async def ingest(folder: Path) -> None:
     print(f"PDFs: {len(files)}; succeeded: {succeeded}; failed: {failed}", flush=True)
     if failed:
         raise SystemExit(1)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

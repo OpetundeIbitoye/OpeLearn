@@ -1,22 +1,39 @@
-"""The study event log. Append-only. This is research data, not telemetry.
-
-Distinct from kernel/logging.py: application logs may be discarded, these
-may not. Different table, different retention, different backup policy.
-"""
+"""Append-only study event capture, separate from application logging."""
 
 from pydantic import BaseModel
 
+from app.kernel.config import settings
+from app.kernel.db import SessionLocal
+from app.study.models import InteractionEvent
+from app.study.schemas import EventBatch
+
 
 class FreezeList(BaseModel):
-    """Recorded on every single turn. If any of these differ across
-    participants, the study has a problem that analysis cannot fix."""
-
     embedding_model: str
     reranker_model: str
     generation_model: str
     arms_hash: str
 
 
-# TODO: SQLAlchemy models for
-#   participant, session, turn, retrieval_result,
-#   interaction_event, survey_response, external_cache
+def freeze_list(arms_hash: str) -> FreezeList:
+    return FreezeList(
+        embedding_model=settings.embedding_model,
+        reranker_model=settings.reranker_model,
+        generation_model=settings.generation_model,
+        arms_hash=arms_hash,
+    )
+
+
+async def append_events(batch: EventBatch) -> int:
+    async with SessionLocal() as session, session.begin():
+        session.add_all(
+            InteractionEvent(
+                id=event.id,
+                session_id=batch.session_id,
+                event_type=event.event_type,
+                payload=event.payload,
+                client_timestamp=event.client_timestamp,
+            )
+            for event in batch.events
+        )
+    return len(batch.events)

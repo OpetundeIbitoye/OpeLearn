@@ -13,7 +13,7 @@ from app.corpus.schemas import Block
 from app.kernel.config import settings
 from app.kernel.db import SessionLocal
 from app.retrieval.fusion import reciprocal_rank_fusion
-from app.retrieval.service import search
+from app.retrieval.service import search_corpus
 
 
 def test_chunk_token_ceiling_and_sections():
@@ -83,7 +83,7 @@ async def test_known_query_returns_known_chunk_in_top_five():
                     embedding_revision=manifest["revision"],
                 )
             )
-        results = await search("violet quokka observatory cryogenic sapphire clock", 10)
+        results = await search_corpus("violet quokka observatory cryogenic sapphire clock", 10)
         assert chunk_id in [candidate.chunk_id for candidate in results[:5]]
         candidate = next(c for c in results if c.chunk_id == chunk_id)
         assert candidate.dense_rank is not None and candidate.sparse_rank is not None

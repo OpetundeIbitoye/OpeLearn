@@ -2,6 +2,7 @@
 pipeline never branches on which source it is talking to."""
 
 from abc import ABC, abstractmethod
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -19,4 +20,7 @@ class SourceProvider(ABC):
     name: str
 
     @abstractmethod
-    async def search(self, query: str, limit: int = 10) -> list[ExternalHit]: ...
+    async def fetch(self, query: str, limit: int = 10) -> Any: ...
+
+    @abstractmethod
+    def parse(self, payload: Any) -> list[ExternalHit]: ...
