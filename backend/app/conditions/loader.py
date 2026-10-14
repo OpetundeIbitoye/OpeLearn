@@ -1,4 +1,5 @@
 """Load and hash the arm configuration. Called once at startup."""
+
 import hashlib
 from pathlib import Path
 

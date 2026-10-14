@@ -1,4 +1,5 @@
 """Enable pgvector without creating domain tables."""
+
 from alembic import op
 
 revision = "0001"

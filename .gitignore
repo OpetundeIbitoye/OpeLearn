@@ -14,3 +14,4 @@ dist/
 
 data/models/
 sample_papers/*.pdf
+rejected_papers/*.pdf

@@ -1,10 +1,11 @@
 """Async Alembic environment."""
+
 import asyncio
 
 from alembic import context
+from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.pool import NullPool
-from sqlalchemy.engine import Connection
 
 from app.kernel.config import settings
 from app.kernel.db import Base

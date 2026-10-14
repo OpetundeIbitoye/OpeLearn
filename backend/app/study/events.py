@@ -3,6 +3,7 @@
 Distinct from kernel/logging.py: application logs may be discarded, these
 may not. Different table, different retention, different backup policy.
 """
+
 from pydantic import BaseModel
 
 

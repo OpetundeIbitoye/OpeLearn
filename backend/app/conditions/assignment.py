@@ -7,6 +7,7 @@ moderator is not downstream of the manipulation.
 Deterministic on (seed, participant_id) so any assignment can be reproduced
 from the recorded seed alone.
 """
+
 import hashlib
 from collections import Counter
 from collections.abc import Sequence

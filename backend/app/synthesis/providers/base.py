@@ -7,6 +7,7 @@ leave institutional infrastructure' question from blocking the build.
 Every implementation MUST report `version_string`, which is recorded on each
 turn as part of the freeze list.
 """
+
 from abc import ABC, abstractmethod
 from collections.abc import AsyncIterator
 

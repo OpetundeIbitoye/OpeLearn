@@ -1,4 +1,5 @@
 """Randomisation must be deterministic and balanced within stratum."""
+
 from collections import Counter
 
 from app.conditions.assignment import assign

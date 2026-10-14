@@ -3,6 +3,7 @@
 If this file passes and the manipulation still failed, the problem is the
 prompt templates, not the config.
 """
+
 from app.conditions.loader import load_arms
 from app.conditions.schemas import ArmId
 

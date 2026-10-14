@@ -1,5 +1,7 @@
 """Idle worker infrastructure; domain jobs are added in later phases."""
-from typing import Any
+
+from collections.abc import Awaitable, Callable
+from typing import Any, ClassVar
 
 from arq.connections import RedisSettings
 
@@ -17,6 +19,6 @@ async def check_redis(ctx: dict[str, Any]) -> bool:
 
 
 class WorkerSettings:
-    functions = [check_redis]
+    functions: ClassVar[list[Callable[..., Awaitable[Any]]]] = [check_redis]
     redis_settings = RedisSettings.from_dsn(settings.redis_url)
     on_startup = startup

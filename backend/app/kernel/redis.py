@@ -1,4 +1,5 @@
 """Shared async Redis connection."""
+
 from redis.asyncio import Redis
 
 from app.kernel.config import settings

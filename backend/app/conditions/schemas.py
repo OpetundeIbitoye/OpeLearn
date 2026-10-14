@@ -2,6 +2,7 @@
 
 This slice imports nothing else from the app. Every other slice imports it.
 """
+
 from enum import StrEnum
 from typing import Literal
 

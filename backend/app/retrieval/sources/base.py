@@ -1,5 +1,6 @@
 """External source interface. Every provider returns the same shape so the
 pipeline never branches on which source it is talking to."""
+
 from abc import ABC, abstractmethod
 
 from pydantic import BaseModel

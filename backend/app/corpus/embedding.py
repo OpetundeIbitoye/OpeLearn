@@ -32,7 +32,7 @@ def get_model() -> Any:
         trust_remote_code=False,
         device="cpu",
     )
-    if model.get_sentence_embedding_dimension() != manifest["dimension"]:
+    if model.get_embedding_dimension() != manifest["dimension"]:
         raise ValueError("Model dimension differs from provisioned dimension")
     return model
 
