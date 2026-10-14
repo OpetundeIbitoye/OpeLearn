@@ -72,6 +72,9 @@ async def ingest_pdf(ctx: dict[str, Any], filename: str) -> dict[str, Any]:
 
 
 class WorkerSettings(InfrastructureWorkerSettings):
+    # arq reads this class's __dict__, so inherited options must be explicit.
+    redis_settings = InfrastructureWorkerSettings.redis_settings
+    on_startup = InfrastructureWorkerSettings.on_startup
     functions: ClassVar[list[Callable[..., Awaitable[Any]]]] = [check_redis, ingest_pdf]
     max_jobs = 1
     job_timeout = 1800

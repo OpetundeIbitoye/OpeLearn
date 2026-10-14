@@ -47,6 +47,7 @@ services:
     volumes: [./backend:/srv, ./config:/srv/config:ro, ./scripts:/srv/scripts:ro, ./data:/srv/data, ./sample_papers:/srv/sample_papers:ro]
     depends_on:
       db: {condition: service_healthy}
+      redis: {condition: service_started}
     command: arq app.corpus.tasks.WorkerSettings
 
   web:
